@@ -15,7 +15,7 @@ class Test():
         parser.add_argument('--std', type=float, default=0.1)
         parser.add_argument('--data_dir', type=str, default='./data/test')
         parser.add_argument('--checkpoint', type=str,
-                            default='./checkpoints/chk_12_std_0.1_InstanceNorm.pt')
+                            default='./checkpoints/chk_1_std_0.1.pt')
         args = parser.parse_args()
         return args.std, args.data_dir, args.checkpoint
 
