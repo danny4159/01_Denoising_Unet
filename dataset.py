@@ -12,11 +12,15 @@ class ImageDataset():
         self.transform = transform
         
     def __len__(self):
-        img_list = os.listdir(self.img_dir)
+        files = os.listdir(self.img_dir)
+        img_list = []
+        for file in files:
+            if '.jpg' in file: # jpg 파일만 가져오도록
+                img_list.append(file)
         return len(img_list)
     
     def __getitem__(self,idx):
-        img_path = os.path.join(self.img_dir, str(idx) + '.jpg')
+        img_path = os.path.join(self.img_dir, str(idx) + '.jpg') # jpg 파일이 0부터 순서대로 저장되어 있어야해
         img = Image.open(img_path).convert('L') # 흑백이미지만 받아. 컬러이미지는 코드 수정 필요.
         if self.transform:
             img = self.transform(img)
