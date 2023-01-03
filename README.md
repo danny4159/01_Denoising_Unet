@@ -4,7 +4,7 @@
 
 ### Results
 
-![unet result](img/unet result.png)
+![unet result](/img/unet result.png)
 
 
 
