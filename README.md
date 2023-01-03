@@ -3,9 +3,7 @@
 
 
 ### Results
-
 ![unet result](https://ifh.cc/g/HAoT50.jpg)
-
 
 
 ### Installing requirements
@@ -28,6 +26,7 @@ python test.py --std=0.1 --data_dir=./data/test --checkpoint=./checkpoints/chk_1
 
 ### Dataset
 FLAIR MRI (private)
+
 
 ### Reference
 [Github: Ne2Ne Image Denoiser](https://github.com/neeraj3029/Ne2Ne-Image-Denoising)
