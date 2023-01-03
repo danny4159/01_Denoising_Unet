@@ -4,7 +4,7 @@ import torch
 class UNet(nn.Module):
     def __init__(self, in_channels=1, out_channels=1, features=64): # TODO: 코드에서는 features=32이다. 문제있으면 돌리기.
         super(UNet, self).__init__()
-        UNet().double_conv
+
         self.encoder1 = UNet.double_conv(in_channels, features, kernel_size=3, padding=1) # TODO: 왜 self.double_conv가 아니라 UNet.double_conv일까
         self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
         self.encoder2 = UNet.double_conv(features, features*2, kernel_size=3, padding=1)
