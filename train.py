@@ -103,7 +103,7 @@ class Train():
                             'model_state_dict': model.module.state_dict(),
                             'optimizer_state_dict': optimizer.state_dict(),
                             'epoch':epoch+1
-                            }, self.CH_DIR + '/chk_12_std_' + str(self.STD) + '_InstanceNorm.pt') # TODO: 저장할때마다 이름 바꿔주기
+                            }, self.CH_DIR + '/chk_1_std_' + str(self.STD) + '.pt') # TODO: 저장할때마다 이름 바꿔주기
                 print('Saving Model...')
             
         plt.plot(epochs, train_loss, label="train loss", color="red",linestyle=':')
