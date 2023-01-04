@@ -3,7 +3,7 @@
 
 
 ### Results
-![unet result](https://ifh.cc/g/HAoT50.jpg)
+![unet result](https://ifh.cc/g/og9Vy9.jpg)
 
 
 ### Installing requirements
