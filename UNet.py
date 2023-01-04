@@ -30,17 +30,17 @@ class UNet(nn.Module):
     def double_conv(in_channels, out_channels, kernel_size, padding):
         return nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, padding=padding, bias=False), # TODO: bias true,false는 어떤 영향을 줄까?
-            nn.BatchNorm2d(num_features=out_channels),
+            # nn.BatchNorm2d(num_features=out_channels),
+            nn.InstanceNorm2d(num_features=out_channels),
             nn.ReLU(inplace=True),
             nn.Conv2d(out_channels, out_channels, kernel_size=kernel_size, padding=padding, bias=False),
-            nn.BatchNorm2d(num_features=out_channels),
+            # nn.BatchNorm2d(num_features=out_channels),
+            nn.InstanceNorm2d(num_features=out_channels),
             nn.ReLU(inplace=True)
         )
             
             
     def forward(self,x):
-        # print("original max: " + str(x.max()))
-        # print("original min: " + str(x.min()))
         enc1 = self.encoder1(x)
         pool1 = self.pool1(enc1)
         enc2 = self.encoder2(pool1)
@@ -64,11 +64,7 @@ class UNet(nn.Module):
         upconv1 = self.upconv1(dec2)
         upconv1 = torch.cat((enc1,upconv1), dim=1)
         dec1 = self.decoder1(upconv1)
-        # print("before max: " + str(dec1.max()))
-        # print("before min: " + str(dec1.min()))
-        output = torch.sigmoid(self.conv1(dec1))  # torch.sigmoid()  # TODO: sigmoid 함수를 추가했네. 왜?? 아마 값을 0에서 1사이로 조정해주기 위함 아닐까? 다른 기능이 있을까?
+        # output = torch.sigmoid(self.conv1(dec1)) 
         # output = self.conv1(dec1)
-        # print("after max: " + str(output.max()))
-        # print("after min: " + str(output.min()))
-        
+        output = torch.tanh(self.conv1(dec1)) 
         return output 

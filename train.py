@@ -11,7 +11,7 @@ from torchvision.utils import save_image
 import matplotlib.pyplot as plt
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"]= "0,2,6,7"
+os.environ["CUDA_VISIBLE_DEVICES"]= "3,4,5,6,7"
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -21,7 +21,7 @@ class Train():
         self.transforms = transforms.Compose([
                                               transforms.CenterCrop(448),
                                               transforms.ToTensor(),
-                                            #   transforms.Normalize((0.5,), (0.5,)) # TODO: 이 normalize를 하니까 결과 이미지를 뽑을 때 어두워지고 처리가 어려워져
+                                              transforms.Normalize((0.5,), (0.5,)) # plot 하기 전 Denormalize가 필요해
                                               ])
         self.trainloader, self.validloader = self.load_data()
         self.use_cuda = torch.cuda.is_available()
@@ -103,7 +103,7 @@ class Train():
                             'model_state_dict': model.module.state_dict(),
                             'optimizer_state_dict': optimizer.state_dict(),
                             'epoch':epoch+1
-                            }, self.CH_DIR + '/chk_1_std_' + str(self.STD) + '.pt') # TODO: 저장할때마다 이름 바꿔주기
+                            }, self.CH_DIR + '/chk_16_std_' + str(self.STD) + '.pt') # TODO: 저장할때마다 이름 바꿔주기
                 print('Saving Model...')
             
         plt.plot(epochs, train_loss, label="train loss", color="red",linestyle=':')

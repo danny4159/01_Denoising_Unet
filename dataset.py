@@ -43,6 +43,6 @@ class NoiseImageDataset(nn.Module):
     def forward(self, img):
         self.img = img  # train.py에서 객체 한개만 생성하여 노이즈 양산하기 위해 forward에서 선언 
         img_noise = self.makeGaussianNoise()
-        img_noise = np.clip(img_noise, 0, 1) # clip: 0이하는 0으로 1이상은 1로  # TODO: 0에서 1 clip말고 더 좋은 방법이 있을까. 
+        img_noise = np.clip(img_noise, -1, 1) # clip: -1이하는 -1으로 1이상은 1로  # TODO: clip말고 더 좋은 방법이 있을까. 
         img_noise = img_noise.clone().detach() # numpy -> tensor
         return img_noise
